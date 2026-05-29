@@ -1,14 +1,10 @@
 // TODO: estilizar esta tela com as cores e identidade visual do seu tema
 // TODO: importar useState — adicione a linha abaixo no topo:
-// import { useState } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+
+// import { useState } from 'react'; CONCLUIDO
+import { useState } from "react";
+
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from "react-native";
 
 // Dados de fallback — usados enquanto a navegacao nao estiver configurada
 const jogoMock = {
@@ -24,16 +20,18 @@ const jogoMock = {
 // Os dados chegam via route.params quando o usuario toca em um jogo na HomeScreen
 export default function DetalheScreen() {
   // Defina os parâmetros de rota, pegando todos os campos presentes no objeto JOGOS definido na HomeScreen
-  // const { titulo... } = route?.params ?? jogoMock;
+  // const { titulo... } = route?.params ?? jogoMock; CONCLUIDO
+  const { titulo, genero, plataforma, nota, sinopse} = route?.params?? jogoMock;
 
   // TODO: estado booleano para controlar se o jogo foi salvo na lista
-  // const [isSalvo, setIsSalvo] = useState(false);
+  // const [isSalvo, setIsSalvo] = useState(false); CONCLUIDO
+  const [isSalvo, setIsSalvo] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.hero}>
-          {/* TODO: substituir pela inicial do titulo ou outro elemento do seu tema */}
+          {/* TODO: substituir pela inicial do titulo ou outro elemento do seu tema CONCLUIDO*/}
           <View style={styles.heroIcone}>
             <Text style={styles.heroIconeTexto}>{titulo[0]}</Text>
           </View>
@@ -57,13 +55,18 @@ export default function DetalheScreen() {
           <Text style={styles.detalheTexto}>{sinopse}</Text>
         </View>
 
-        {/* TODO: quando implementar o estado isSalvo, use:
+        {/* TODO: quando implementar o estado isSalvo, use: CONCLUIDO
             onPress={() => setIsSalvo(prev => !prev)}
             style={[styles.botao, isSalvo && styles.botaoAtivo]}
             texto: isSalvo ? 'Remover da Lista' : 'Adicionar a Lista' */}
+            onPress={() => setIsSalvo(prev => !prev)}
+            style={[styles.botao, isSalvo && styles.botaoAtivo]}
+            texto: isSalvo ? 'Remover da lista': 'Adicionar a lista'
+
         <TouchableOpacity style={styles.botao}>
           <Text style={styles.botaoTexto}>Adicionar a Lista</Text>
         </TouchableOpacity>
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -73,104 +76,147 @@ export default function DetalheScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#120F1D",
   },
+
   hero: {
-    backgroundColor: "#333333",
+    backgroundColor: "#1B1430",
     alignItems: "center",
-    paddingVertical: 28,
+    paddingVertical: 30,
     paddingHorizontal: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: "#8B5CF6",
   },
+
   heroIcone: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: "#555555",
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    backgroundColor: "#8B5CF6",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 14,
+    marginBottom: 16,
+
+    shadowColor: "#8B5CF6",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    elevation: 8,
   },
+
   heroIconeTexto: {
-    fontSize: 36,
+    fontSize: 40,
     fontWeight: "bold",
     color: "#FFFFFF",
   },
+
   heroTitulo: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "bold",
     color: "#FFFFFF",
     textAlign: "center",
     marginBottom: 6,
   },
+
   heroSubtitulo: {
-    fontSize: 14,
-    color: "#CCCCCC",
-    marginBottom: 16,
+    fontSize: 15,
+    color: "#C4B5FD",
+    marginBottom: 18,
   },
+
   heroMeta: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 20,
-    backgroundColor: "rgba(255,255,255,0.1)",
-    borderRadius: 12,
-    paddingVertical: 10,
+    backgroundColor: "#241A3D",
+    borderRadius: 14,
+    paddingVertical: 12,
     paddingHorizontal: 24,
+    borderWidth: 1,
+    borderColor: "#4C1D95",
   },
+
   metaItem: {
     alignItems: "center",
   },
+
   metaLabel: {
-    fontSize: 11,
-    color: "#AAAAAA",
-    marginBottom: 2,
+    fontSize: 12,
+    color: "#A78BFA",
+    marginBottom: 4,
   },
+
   metaValor: {
-    fontSize: 14,
-    fontWeight: "600",
+    fontSize: 15,
+    fontWeight: "bold",
     color: "#FFFFFF",
   },
+
   metaSeparador: {
     width: 1,
-    height: 28,
-    backgroundColor: "rgba(255,255,255,0.3)",
+    height: 30,
+    backgroundColor: "#4C1D95",
+    marginHorizontal: 20,
   },
+
   secao: {
     margin: 16,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 12,
-    padding: 16,
+    backgroundColor: "#241A3D",
+    borderRadius: 16,
+    padding: 18,
+    borderWidth: 1,
+    borderColor: "#4C1D95",
+
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
-    elevation: 2,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    elevation: 4,
   },
+
   secaoTitulo: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
-    color: "#333333",
-    marginBottom: 10,
+    color: "#FFFFFF",
+    marginBottom: 12,
   },
+
   detalheTexto: {
-    fontSize: 14,
-    color: "#555555",
-    lineHeight: 22,
-  },
-  botao: {
-    margin: 16,
-    marginTop: 4,
-    backgroundColor: "#333333",
-    borderRadius: 12,
-    paddingVertical: 14,
-    alignItems: "center",
-    marginBottom: 32,
-  },
-  // TODO: estilizar o estado ativo do botao com a cor do seu tema
-  botaoAtivo: {
-    backgroundColor: "#555555",
-  },
-  botaoTexto: {
     fontSize: 15,
+    color: "#C4B5FD",
+    lineHeight: 24,
+  },
+
+  botao: {
+    marginHorizontal: 16,
+    marginTop: 4,
+    marginBottom: 32,
+    backgroundColor: "#8B5CF6",
+    borderRadius: 14,
+    paddingVertical: 16,
+    alignItems: "center",
+
+    shadowColor: "#8B5CF6",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 6,
+    elevation: 6,
+  },
+
+  botaoAtivo: {
+    backgroundColor: "#6D28D9",
+  },
+
+  botaoTexto: {
+    fontSize: 16,
     fontWeight: "bold",
     color: "#FFFFFF",
   },

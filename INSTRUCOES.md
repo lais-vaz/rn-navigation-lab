@@ -19,14 +19,14 @@ Voce pode usar inteligencia artificial para auxiliar na estilizacao. Leia o arqu
 ---
 
 ## Passo 1 — Instalar as dependencias
-
+<!-- 
 ```
 npm install
 ```
 
 As dependencias do React Navigation ja estao no `package.json`. Basta rodar o comando acima.
 
----
+--- -->
 
 ## Passo 2 — Implementar a navegacao
 
@@ -59,8 +59,8 @@ Consulte os exemplos de sala para ver o padrao exato.
 Com a navegacao funcionando, implemente os hooks nas telas:
 
 ### Na HomeScreen
-
-- Importe `useState` e `useEffect` do React no topo do arquivo
+<!-- 
+- Importe `useState` e `useEffect` do React no topo do arquivo -->
 - Declare um estado para guardar o texto digitado na busca, iniciando com string vazia
 - Declare um estado para os jogos que aparecem na lista, iniciando com todos os jogos
 - Adicione um `useEffect` que depende do estado de busca e atualiza os jogos filtrados sempre que o usuario digitar
@@ -101,7 +101,7 @@ Garanta que a navegacao da `HomeScreen` para a `DetalheScreen` passe os dados do
 
 A pasta `src/components/` ja tem um exemplo de componente reutilizavel (`BotaoAcao.js`).
 
-Crie o componente `CardJogo` em `src/components/CardJogo.js`. Ele deve receber as props `titulo`, `genero`, `plataforma` e `nota` e exibi-las de forma visual.
+<!-- Crie o componente `CardJogo` em `src/components/CardJogo.js`. Ele deve receber as props `titulo`, `genero`, `plataforma` e `nota` e exibi-las de forma visual. -->
 
 Depois, exporte-o no `index.js` seguindo o mesmo padrao do `BotaoAcao`.
 

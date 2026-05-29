@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 // TODO: apos criar o componente CardJogo, importe-o aqui:
-// import { CardJogo } from '../components';
+// import { CardJogo } from '../components'; CONCLUIDO
+import { cardJogo } from '../components';
 
 // Dados de exemplo para voce visualizar o renderItem funcionando
 // Em um app real, esses itens chegariam via route.params enviados pela DetalheScreen
@@ -28,14 +29,17 @@ export default function ListaScreen({ route }) {
   const [itensSalvos, setItensSalvos] = useState(jogosMock);
 
   // Para receber um jogo salvo da DetalheScreen via route.params:
-  // if (route.params?.novoJogo) {
+  // if (route.params?.novoJogo) { CONCLUIDO
   //   setItensSalvos(prev => [...prev, route.params.novoJogo]);
   // }
+  if (route.params?.novoJogo) {
+    setItensSalvos(prev => [...prev, route.params.novoJogo]);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        {/* TODO: renomeie o titulo para o seu tema */}
+        {/* TODO: renomeie o titulo para o seu tema CONCLUIDO */}
         <Text style={styles.headerTitulo}>Minha Lista</Text>
       </View>
 
@@ -47,12 +51,13 @@ export default function ListaScreen({ route }) {
           // O componente CardJogo deve receber as props: titulo, genero, plataforma e nota
           // Depois substitua este bloco por:
           // <CardJogo titulo={item.titulo} genero={item.genero} plataforma={item.plataforma} nota={item.nota} />
-          <View style={styles.card} />
+        <CardJogo titulo={item.titulo} genero={item.genero} plataforma={item.plataforma} nota={item.nota} />
+         
         )}
         ListEmptyComponent={
           <View style={styles.conteudo}>
             <View style={styles.iconeContainer}>
-              {/* TODO: troque pela inicial do seu tema */}
+              {/* TODO: troque pela inicial do seu tema CONCLUIDO*/}
               <Text style={styles.icone}>G</Text>
             </View>
             <Text style={styles.titulo}>Nenhum jogo salvo</Text>
@@ -70,69 +75,134 @@ export default function ListaScreen({ route }) {
 
 // TODO: ajuste as cores para o tema do seu app
 const styles = StyleSheet.create({
+  // Tela principal
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#120F1D",
   },
+
+  // Header
   header: {
-    backgroundColor: "#333333",
+    backgroundColor: "#1B1430",
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 24,
+    borderBottomWidth: 2,
+    borderBottomColor: "#8B5CF6",
   },
+
   headerTitulo: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: "bold",
     color: "#FFFFFF",
+    letterSpacing: 1,
   },
+
+  // Lista vazia
   listaVazia: {
     flex: 1,
   },
+
+  // Conteúdo central
   conteudo: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 32,
   },
+
+  // Ícone
   iconeContainer: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
-    backgroundColor: "#E0E0E0",
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "#8B5CF6",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
+    marginBottom: 24,
+
+    shadowColor: "#8B5CF6",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12,
+    elevation: 8,
   },
+
   icone: {
-    fontSize: 40,
+    fontSize: 42,
     fontWeight: "bold",
-    color: "#555555",
+    color: "#FFFFFF",
   },
+
+  // Textos
   titulo: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
-    color: "#1A1A1A",
-    marginBottom: 8,
+    color: "#FFFFFF",
+    marginBottom: 10,
     textAlign: "center",
   },
+
   descricao: {
     fontSize: 16,
-    color: "#555555",
-    fontWeight: "600",
+    color: "#C4B5FD",
     textAlign: "center",
     marginBottom: 12,
   },
+
   dica: {
-    fontSize: 13,
-    color: "#888888",
+    fontSize: 14,
+    color: "#A78BFA",
     textAlign: "center",
-    lineHeight: 20,
+    lineHeight: 22,
   },
+
+  // Card (caso utilize nesta tela)
   card: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#241A3D",
     marginHorizontal: 16,
     marginTop: 12,
-    borderRadius: 8,
+    borderRadius: 16,
     padding: 16,
+    borderWidth: 1,
+    borderColor: "#4C1D95",
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 5,
+  },
+
+  // Caso queira usar dentro do CardJogo
+  cardTitulo: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+    marginBottom: 8,
+  },
+
+  cardGenero: {
+    fontSize: 14,
+    color: "#C4B5FD",
+    marginBottom: 4,
+  },
+
+  cardPlataforma: {
+    fontSize: 14,
+    color: "#C4B5FD",
+    marginBottom: 8,
+  },
+
+  cardNota: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#A855F7",
   },
 });
